@@ -152,11 +152,53 @@ int main(){
 
                 ClearBackground(RAYWHITE);
 
+                /*
                 rlPushMatrix();
-                    rlTranslatef(0, 25*50, 0);
-                    rlRotatef(90, 1, 0, 0);
+                    rlTranslatef(0, 50*25, 0);
+                    rlRotatef(90, 90, 0, 0);
                     DrawGrid(100, 50);
                 rlPopMatrix();
+                */
+
+
+                for(int i = -50; i <= 50; i++){
+                    int screenX = i * 50;
+                    if(i != 0)
+                    {
+                        DrawLine(screenX, 0 - 2500, screenX, 0 + 2500, GRAY);
+                    } else {
+                        DrawLine(screenX, 0 - 2500, screenX, 0 + 2500, BLACK);
+                    }
+                }
+
+                for(int j = -50; j <=50; j++){
+                    int screenY = j * 50;
+                    if(j != 0)
+                    {
+                        DrawLine(0-2500, screenY, 0+2500, screenY, GRAY);
+                    } else {
+                        DrawLine(0-2500, screenY, 0+2500, screenY, BLACK);
+                    }
+
+                }
+
+                Vector2 startPos;
+                Vector2 endPos;
+                float thickness = 0.1;
+                double delta_h = 1;
+
+                for(int i = -50; i <= 50; i++){
+                    int screenX = i *50;
+                    for(int j = -50; j <= 50; j++){
+                        int screenY = j * 50;
+                        DrawCircle(screenX, screenY, 8, GREEN);
+                        startPos.x = screenX;
+                        startPos.y = screenY;
+                        endPos.x = screenX * delta_h;
+                        endPos.y = 2* screenY + delta_h;
+                        DrawLineEx(startPos, endPos, thickness, BLUE);
+                    }
+                }
 /*
                 while(i <= total){
                     int screenX = timeX[i]*5 ;
