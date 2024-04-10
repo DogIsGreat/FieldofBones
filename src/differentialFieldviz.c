@@ -184,18 +184,20 @@ int main(){
 
                 Vector2 startPos;
                 Vector2 endPos;
-                float thickness = 0.1;
+                float thickness = 2;
                 double delta_h = 1;
 
+                //sketch xy' = 2xy
                 for(int i = -50; i <= 50; i++){
                     int screenX = i *50;
                     for(int j = -50; j <= 50; j++){
                         int screenY = j * 50;
-                        DrawCircle(screenX, screenY, 8, GREEN);
-                        startPos.x = screenX;
-                        startPos.y = screenY;
-                        endPos.x = screenX * delta_h;
-                        endPos.y = 2* screenY + delta_h;
+                        DrawCircle(screenX, screenY, 5, GREEN);
+                        double slope = ((2*j) / i);
+                        startPos.x = screenX-25;
+                        startPos.y = screenY-slope;
+                        endPos.x = screenX+25;
+                        endPos.y = screenY + slope;
                         DrawLineEx(startPos, endPos, thickness, BLUE);
                     }
                 }
